@@ -1,0 +1,26 @@
+       
+
+    def simplify_expression(self):
+        if self.validate_expression(sys.argv[1]):
+            lexer = Lexer()
+            new_token = ""
+            for token in lexer.rhs:
+                if token[0] == "+":
+                    new_token = "-" + token[1:]
+                elif str.isdigit(token[0]):
+                    new_token += "-" + token
+                elif token[0] == "-":
+                    new_token = "+" + token[1:]
+                lexer.lhs.append(new_token)
+            return lexer.lhs
+        else:
+            empty = []
+            return empty
+
+      '''def print_simplified_expression(self):
+        expression_list = self.simplify_expression()
+        expression = "Reduced form: "
+        for token in expression_list:
+            expression += token
+        expression += " = 0"
+        print(expression, end="")'''  
